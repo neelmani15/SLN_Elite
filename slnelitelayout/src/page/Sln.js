@@ -30,10 +30,7 @@ export default function Sln() {
         setHoveredPlot(null);
         setHoveredStatus(null);
       };
-    //   const handleClick = (e) => {
-    //     const { offsetX, offsetY } = e.nativeEvent;
-    //     setPopupPosition({ x: offsetX, y: offsetY });
-    // };
+      
     const fetchSlnData = async() =>{
         try{
             const pointdata=PointData;
@@ -50,18 +47,6 @@ export default function Sln() {
             console.error('Error fetching data: ',e.message);
             setIsLoading(false);
         }
-    }
-    const tooltipStyle = {
-        position: 'fixed',
-        left: popupPosition.x,
-        top: popupPosition.y,
-        transform: 'translate(-50%, -50%)', // Center the tooltip
-        // Add additional styles here
-    };
-    if (window.innerWidth <= 600) {
-        tooltipStyle.left = '50%'; // Center horizontally
-        tooltipStyle.top = '80%'; // Position near the bottom
-        tooltipStyle.transform = 'translate(-50%, 0)'; // Adjust transform for vertical centering
     }
     
     if (isLoading) {

@@ -30,7 +30,7 @@ export default function Sln() {
         setHoveredPlot(null);
         setHoveredStatus(null);
       };
-      
+
     const fetchSlnData = async() =>{
         try{
             const pointdata=PointData;
@@ -260,7 +260,6 @@ export default function Sln() {
                         popupPosition={popupPosition}
                         onMouseMove={handleMouseMove}
                         onMouseLeave={handleMouseLeave}
-                        // onClick={handleClick}
                     />
                 ))}
         </svg>

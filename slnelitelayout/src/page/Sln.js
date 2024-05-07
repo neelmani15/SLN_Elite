@@ -13,18 +13,27 @@ export default function Sln() {
     const [hoveredStatus, setHoveredStatus] = useState(null);
     const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
 
+
     useEffect(()=>{
         fetchSlnData();
     },[])
     const handleMouseMove = (e, plotno, status) => {
         setHoveredPlot(plotno);
         setHoveredStatus(status);
-        setPopupPosition({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
+        console.log(e);
+        setPopupPosition({ x: e.target.animatedPoints[0].x, y: e.target.animatedPoints[0].y-30});
+        console.log(e.target.animatedPoints[0].x);
+        console.log(e.target.animatedPoints[0].y);
       };
     
       const handleMouseLeave = () => {
         setHoveredPlot(null);
+        setHoveredStatus(null);
       };
+    //   const handleClick = (e) => {
+    //     const { offsetX, offsetY } = e.nativeEvent;
+    //     setPopupPosition({ x: offsetX, y: offsetY });
+    // };
     const fetchSlnData = async() =>{
         try{
             const pointdata=PointData;
@@ -42,6 +51,19 @@ export default function Sln() {
             setIsLoading(false);
         }
     }
+    const tooltipStyle = {
+        position: 'fixed',
+        left: popupPosition.x,
+        top: popupPosition.y,
+        transform: 'translate(-50%, -50%)', // Center the tooltip
+        // Add additional styles here
+    };
+    if (window.innerWidth <= 600) {
+        tooltipStyle.left = '50%'; // Center horizontally
+        tooltipStyle.top = '80%'; // Position near the bottom
+        tooltipStyle.transform = 'translate(-50%, 0)'; // Adjust transform for vertical centering
+    }
+    
     if (isLoading) {
         return (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -55,6 +77,7 @@ export default function Sln() {
             viewBox="0 0 1500 1050"
             width="100%" 
             style={{ display: 'block', margin: 'auto' }}
+           
             > 
             {/* Define linear gradient for page and Heading */}
             <defs>
@@ -252,6 +275,7 @@ export default function Sln() {
                         popupPosition={popupPosition}
                         onMouseMove={handleMouseMove}
                         onMouseLeave={handleMouseLeave}
+                        // onClick={handleClick}
                     />
                 ))}
         </svg>

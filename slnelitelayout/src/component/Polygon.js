@@ -13,7 +13,8 @@ export default function Polygon({points,
   hoveredStatus,
   popupPosition,
   onMouseMove,
-  onMouseLeave
+  onMouseLeave,
+  onClick
 }) {
   let statusColorClass;
 
@@ -51,7 +52,7 @@ export default function Polygon({points,
   return (
     <>
         <polygon points={points} fill={statusColorClass} stroke='green' strokeWidth={2} onMouseMove={(e) => onMouseMove(e, plotno, status)}
-                onMouseLeave={onMouseLeave}
+                onMouseLeave={onMouseLeave} onClick={onClick}
  />
             {plotno === "1" && (
               <>

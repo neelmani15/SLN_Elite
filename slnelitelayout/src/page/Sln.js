@@ -20,10 +20,8 @@ export default function Sln() {
     const handleMouseMove = (e, plotno, status) => {
         setHoveredPlot(plotno);
         setHoveredStatus(status);
-        console.log(e);
+        // console.log(e);
         setPopupPosition({ x: e.target.animatedPoints[0].x, y: e.target.animatedPoints[0].y-30});
-        console.log(e.target.animatedPoints[0].x);
-        console.log(e.target.animatedPoints[0].y);
       };
     
       const handleMouseLeave = () => {
